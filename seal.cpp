@@ -3,26 +3,19 @@
 #include <fstream>
 #include <string>
 #include <regex>
+#include "lib/StatusManager.hpp"
 
 using namespace std;
-
-void error(int c) {
-  printf("Error: ");
-  if (c == 1) {
-    puts("The input is empty.");
-  }
-  exit(1);
-}
+StatusManager sm;
 
 int main(int argc, char* argv[]) {
   system("clear");
-  
   const regex say("^(?:say\())");
+
   fstream fstr;
   fstr.open(argv[1]);
-
   if (fstr.fail()) {
-    error(1);
+    sm.error(1);
   } else {
     string line;
     while (getline(fstr, line)) {
@@ -34,6 +27,7 @@ int main(int argc, char* argv[]) {
         printf("%s\n", mouth.c_str());
       }
     }
-  }  
+  }
+    
   return 0;
 }
