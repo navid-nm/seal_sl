@@ -15,16 +15,15 @@ void error(int c) {
 int main(int argc, char* argv[]) {
   system("clear");
   char space[100];
+  char line[256];
+
   FILE *file;
   if ((file = fopen(argv[1], "r")) == NULL) {
     error(1);
   }
+  
   while (fscanf(file, "say(%[^\n)]", space)) {
     puts(space);
-    getc(file);
-    if (feof(file)) {
-      break;
-    } 
   }
   fclose(file);
   return 0;
