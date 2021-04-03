@@ -2,27 +2,34 @@
 #include <stdio.h>
 #include <string.h>
 
+fpos_t pos;
+
 void error(int c) {
-	printf("Error: ");
-	if (c == 1) {
-		puts("The input is empty.");
-	}
-	exit(1);
+  printf("Error: ");
+  if (c == 1) {
+    puts("The input is empty.");
+  }
+  exit(1);
 }
 
 int main(int argc, char* argv[]) {
-	system("@cls||clear");
-	char space[1000];
-	FILE *file;
-	if ((file = fopen(argv[1], "r")) == NULL) {
-		error(1);
-	}
-	fscanf(file, "%[^\n]", space);
-	if (strchr(space, 'say(') != NULL) {
-		int torem = strlen(space) - 5;
-		space[strlen(space)-1] = '\0';
-		printf("%s\n", space + strlen(space) - torem);
-	}
-	fclose(file);
-	return 0;
+  system("clear");
+  char space[100];
+  int nowhere;
+
+  FILE *file;
+  if ((file = fopen(argv[1], "r")) == NULL) {
+    error(1);
+  }
+
+  while (fscanf(file, "say(%[^\n)]", space)) {
+    puts(space);
+    getc(file);
+    if (feof(file)) {
+      break;
+    } 
+  }
+  fclose(file);
+	
+  return 0;
 }
