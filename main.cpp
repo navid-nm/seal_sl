@@ -36,7 +36,7 @@ bool with(bool startend, string full, string es) {
   full: The users attempt at a command
 */
 bool proper(string type, string full) {
-  if (with(true, full, type + "(") && with(false, full, ")")) {
+  if (with(true, full, type + "(")) {
     return true;
   }
   return false;
