@@ -58,21 +58,21 @@ void processcommand(string com) {
 }
  
 string trim(string s) {
-    size_t start = s.find_first_not_of(whitespace);
-    s = (start == string::npos) ? "" : s.substr(start);
-    size_t end = s.find_last_not_of(whitespace);
-    return (end == string::npos) ? "" : s.substr(0, end + 1);
+  size_t start = s.find_first_not_of(whitespace);
+  s = (start == string::npos) ? "" : s.substr(start);
+  size_t end = s.find_last_not_of(whitespace);
+  return (end == string::npos) ? "" : s.substr(0, end + 1);
 }
 
 void execflow(vector<string> prog) {
   int index = 0, offset = 0; string curinst;
   for (auto i : prog) {
-    if (trim(i) == "forever >") {
+    if (i == "forever >") {
       while(1) {
         curinst = prog[index + offset];
-        if (trim(curinst) == "<") {
+        if (curinst == "<") {
           offset = 0;
-        } else if (trim(curinst) == "stop") {
+        } else if (curinst == "stop") {
           break;
         }
         processcommand(curinst);
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
   } else {
     string line;
     while (getline(fstr, line)) {
-      instructions.push_back(line);
+      instructions.push_back(trim(line));
     }
     execflow(instructions);
   }

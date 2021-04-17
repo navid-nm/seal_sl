@@ -1,1 +1,4 @@
-say(hello world)
+forever >
+    say(hello world)
+    sleep(1)
+<
