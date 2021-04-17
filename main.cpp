@@ -12,8 +12,6 @@ using namespace std;
 statusmgr status;
 builtin self;
 
-string whitespace = " \n\r\t\f\v";
-
 /*
   startend: True for start, false for end
   full:     The entire str
@@ -58,6 +56,7 @@ void processcommand(string com) {
 }
  
 string trim(string s) {
+  string whitespace = " \n\r\t\f\v";
   size_t start = s.find_first_not_of(whitespace);
   s = (start == string::npos) ? "" : s.substr(start);
   size_t end = s.find_last_not_of(whitespace);
