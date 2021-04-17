@@ -4,13 +4,13 @@
 #include <string>
 #include <regex>
 #include <list>
-#include "lib/StatusManager.hpp"
-#include "lib/BuiltIn.hpp"
+#include "lib/statusmgr.hpp"
+#include "lib/builtin.hpp"
 
 using namespace std;
 
-StatusManager status;
-BuiltIn self;
+statusmgr status;
+builtin self;
 
 /*
   startend: True for start, false for end

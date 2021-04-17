@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cstdio>
-#include "StatusManager.hpp"
+#include "statusmgr.hpp"
 
 using namespace std;
 
-void StatusManager::error(int code) {
+void statusmgr::error(int code) {
   printf("Error: ");
   if (code == 1) {
     puts("The input is empty.");

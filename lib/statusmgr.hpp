@@ -1,6 +1,6 @@
 #include <iostream>
 
-class StatusManager {
+class statusmgr {
   public:
     void error(int code);
 };

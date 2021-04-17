@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-class BuiltIn {
+class builtin {
   public:
     void say(std::string text);
 };

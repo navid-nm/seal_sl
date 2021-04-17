@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-#include "BuiltIn.hpp"
+#include "builtin.hpp"
 
 using namespace std;
 
-void BuiltIn::say(string text) {
+void builtin::say(string text) {
   printf("%s\n", text.c_str());
 }
