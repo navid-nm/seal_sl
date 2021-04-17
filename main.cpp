@@ -5,10 +5,12 @@
 #include <regex>
 #include <list>
 #include "lib/StatusManager.hpp"
+#include "lib/BuiltIn.hpp"
 
 using namespace std;
 
-StatusManager sm;
+StatusManager status;
+BuiltIn self;
 
 /*
   startend: True for start, false for end
@@ -40,11 +42,14 @@ bool proper(string type, string full) {
   return false;
 }
 
+string getcontent(string com) {
+  int pos = com.find('(') + 1;
+  return com.substr(pos, com.find(')', pos) - pos);
+}
+
 void processcommand(string com) {
    if (proper("say", com)) {
-    int pos = com.find('(') + 1;
-    string mouth = com.substr(pos, com.find(')', pos) - pos);
-    printf("%s\n", mouth.c_str());
+    self.say(getcontent(com));
    }
 }
 
@@ -60,7 +65,7 @@ int main(int argc, char* argv[]) {
   fstream fstr;
   fstr.open(argv[1]);
   if (fstr.fail()) {
-    sm.error(1);
+    status.error(1);
   } else {
     string line;
     while (getline(fstr, line)) {
