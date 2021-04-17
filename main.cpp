@@ -12,6 +12,8 @@ using namespace std;
 statusmgr status;
 builtin self;
 
+string whitespace = " \n\r\t\f\v";
+
 /*
   startend: True for start, false for end
   full:     The entire str
@@ -54,16 +56,37 @@ void processcommand(string com) {
      self.sleep(stoi(getcontent(com)));
    }
 }
+ 
+string trim(string s) {
+    size_t start = s.find_first_not_of(whitespace);
+    s = (start == string::npos) ? "" : s.substr(start);
+    size_t end = s.find_last_not_of(whitespace);
+    return (end == string::npos) ? "" : s.substr(0, end + 1);
+}
 
-void execflow(list<string> prog) {
+void execflow(vector<string> prog) {
+  int index = 0, offset = 0; string curinst;
   for (auto i : prog) {
+    if (trim(i) == "forever >") {
+      while(1) {
+        curinst = prog[index + offset];
+        if (trim(curinst) == "<") {
+          offset = 0;
+        } else if (trim(curinst) == "stop") {
+          break;
+        }
+        processcommand(curinst);
+        offset++;
+      }
+    }
     processcommand(i);
+    index++;
   }
 }
 
 int main(int argc, char* argv[]) {
   system("clear");
-  list<string> instructions;
+  vector<string> instructions;
   fstream fstr;
   fstr.open(argv[1]);
   if (fstr.fail()) {
