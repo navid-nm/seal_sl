@@ -50,6 +50,8 @@ string getcontent(string com) {
 void processcommand(string com) {
    if (proper("say", com)) {
     self.say(getcontent(com));
+   } else if (proper("sleep", com)) {
+     self.sleep(stoi(getcontent(com)));
    }
 }
 
