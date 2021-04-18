@@ -64,21 +64,28 @@ string trim(string s) {
 }
 
 void execflow(vector<string> prog) {
-  int index = 0, offset = 0; string curinst;
+  int index = 0, offset = 0, savedf = 1; string curinst;
+  bool paiddues = true;
   for (auto i : prog) {
     if (i == "forever >") {
       while(1) {
         curinst = prog[index + offset];
         if (curinst == "<") {
+          savedf = offset;
           offset = 0;
         } else if (curinst == "stop") {
+          paiddues = false;
           break;
         }
         processcommand(curinst);
         offset++;
       }
     }
-    processcommand(i);
+    if (paiddues) {
+      processcommand(prog[index]);
+    } else if (prog[index] == "<") {
+      paiddues = true;
+    }
     index++;
   }
 }
