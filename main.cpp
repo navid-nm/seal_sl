@@ -66,21 +66,19 @@ string trim(string s) {
 }
 
 bool forever(vector<string> prog, int index) {
-  bool paiddues;
-  string curinst; 
-  int offset = 0;
+  bool switchp; string curinst; int offset = 0;
   while(1) {
     curinst = prog[index + offset];
     if (curinst == "<") {
       offset = 0;
     } else if (curinst == "stop") {
-      paiddues = false;
+      switchp = false;
       break;
     }
     processcommand(curinst);
     offset++;
   }
-  return paiddues;
+  return switchp;
 }
 
 void execflow(vector<string> prog) {
