@@ -6,11 +6,13 @@
 #include <list>
 #include "lib/statusmgr.hpp"
 #include "lib/builtin.hpp"
+#include "lib/sysc.hpp"
 
 using namespace std;
 
 statusmgr status;
 builtin self;
+sysc sys;
 
 /*
   startend: True for start, false for end
@@ -91,10 +93,9 @@ void execflow(vector<string> prog) {
 }
 
 int main(int argc, char* argv[]) {
-  system("clear");
+  sys.clear();
   vector<string> instructions;
-  fstream fstr;
-  fstr.open(argv[1]);
+  fstream fstr; fstr.open(argv[1]);
   if (fstr.fail()) {
     status.error(1);
   } else {
