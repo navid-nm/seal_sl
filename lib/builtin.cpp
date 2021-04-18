@@ -8,10 +8,10 @@
 
 using namespace std;
 
-void builtin::say(string text) {
+void bfunc::say(string text) {
   printf("%s\n", text.c_str());
 }
 
-void builtin::sleep(int time) {
+void bfunc::sleep(int time) {
   usleep(time * pow(10, 6));
 }

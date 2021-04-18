@@ -11,7 +11,7 @@
 using namespace std;
 
 statusmgr status;
-builtin self;
+bfunc self;
 sysc sys;
 
 /*

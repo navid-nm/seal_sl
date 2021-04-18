@@ -3,7 +3,7 @@
 
 enum type {INT, STR, SWITCH};
 
-class builtin {
+class bfunc {
   public:
     void say(std::string text);
     void sleep(int time);
