@@ -11,6 +11,7 @@
 using namespace std;
 
 statusmgr status;
+pfunc ptols;
 bfunc self;
 sysc sys;
 
@@ -56,14 +57,6 @@ void processcommand(string com) {
     self.sleep(stoi(getcontent(com)));
   }
 }
- 
-string trim(string s) {
-  string whitespace = " \n\r\t\f\v";
-  size_t start = s.find_first_not_of(whitespace);
-  s = (start == string::npos) ? "" : s.substr(start);
-  size_t end = s.find_last_not_of(whitespace);
-  return (end == string::npos) ? "" : s.substr(0, end + 1);
-}
 
 bool forever(vector<string> prog, int index) {
   bool switchp; string curinst; int offset = 0;
@@ -106,7 +99,7 @@ int main(int argc, char* argv[]) {
   } else {
     string line;
     while (getline(fstr, line)) {
-      instructions.push_back(trim(line));
+      instructions.push_back(ptols.trim(line));
     }
     execflow(instructions);
   }

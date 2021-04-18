@@ -9,6 +9,11 @@ class bfunc {
     void sleep(int time);
 };
 
+class pfunc {
+  public:
+    std::string trim(std::string text);
+};
+
 class var {
   public:
     void gettype();
