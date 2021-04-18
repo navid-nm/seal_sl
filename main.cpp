@@ -11,7 +11,7 @@
 using namespace std;
 
 statusmgr status;
-pfunc ptols;
+strfrm ptols;
 bfunc self;
 sysc sys;
 

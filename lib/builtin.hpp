@@ -9,7 +9,7 @@ class bfunc {
     void sleep(int time);
 };
 
-class pfunc {
+class strfrm {
   public:
     std::string trim(std::string text);
 };

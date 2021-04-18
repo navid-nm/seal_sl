@@ -16,7 +16,7 @@ void bfunc::sleep(int time) {
   usleep(time * pow(10, 6));
 } 
 
-string pfunc::trim(string s) {
+string strfrm::trim(string s) {
   string whitespace = " \n\r\t\f\v";
   size_t start = s.find_first_not_of(whitespace);
   s = (start == string::npos) ? "" : s.substr(start);
