@@ -65,23 +65,30 @@ string trim(string s) {
   return (end == string::npos) ? "" : s.substr(0, end + 1);
 }
 
+bool forever(vector<string> prog, int index) {
+  bool paiddues;
+  string curinst; 
+  int offset = 0;
+  while(1) {
+    curinst = prog[index + offset];
+    if (curinst == "<") {
+      offset = 0;
+    } else if (curinst == "stop") {
+      paiddues = false;
+      break;
+    }
+    processcommand(curinst);
+    offset++;
+  }
+  return paiddues;
+}
+
 void execflow(vector<string> prog) {
-  int index = 0, offset = 0, savedf = 1; string curinst;
+  int index = 0;
   bool paiddues = true;
   for (auto i : prog) {
     if (i == "forever >") {
-      while(1) {
-        curinst = prog[index + offset];
-        if (curinst == "<") {
-          savedf = offset;
-          offset = 0;
-        } else if (curinst == "stop") {
-          paiddues = false;
-          break;
-        }
-        processcommand(curinst);
-        offset++;
-      }
+      paiddues = forever(prog, index);
     }
     if (paiddues) {
       processcommand(prog[index]);
