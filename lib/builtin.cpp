@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -22,4 +23,9 @@ string strfrm::trim(string s) {
   s = (start == string::npos) ? "" : s.substr(start);
   size_t end = s.find_last_not_of(whitespace);
   return (end == string::npos) ? "" : s.substr(0, end + 1);
+}
+
+string strfrm::removeallwsp(string s) {
+  s.erase(remove_if(s.begin(), s.end(), ::isspace), s.end());
+  return s;
 }

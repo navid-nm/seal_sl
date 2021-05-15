@@ -12,6 +12,7 @@ class bfunc {
 class strfrm {
   public:
     std::string trim(std::string text);
+    std::string removeallwsp(std::string text);
 };
 
 class var {
