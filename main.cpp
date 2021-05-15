@@ -79,7 +79,7 @@ void incvar(string com) {
   vector<string> argss; string tmp; 
   stringstream ss(com);
   while (getline(ss, tmp, ',')) { 
-      argss.push_back(tmp);
+    argss.push_back(tmp);
   }
   argss[0].erase(argss[0].begin());
   int tempint = stoi(vars[argss[0]][1]) + stoi(argss[1]);
@@ -91,7 +91,7 @@ string tokenise(string innerc) {
   string tmp; 
   stringstream ss(innerc);
   while (getline(ss, tmp, ' ')) { 
-      tokens.push_back(tmp);
+    tokens.push_back(tmp);
   }
   for (int i = 0; i < tokens.size(); i++) {
     string first, toadd; first.push_back(tokens[i][0]);
